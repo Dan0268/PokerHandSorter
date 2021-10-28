@@ -90,15 +90,14 @@ public class PokerHandChecker {
 //            Simple score check to determine winner if there is no tie
             if (Player1Score > Player2Score) winner = "Player 1";
             else if (Player1Score < Player2Score) winner = "Player 2";
-
-//            Tie check for non-paired cards
-
             else if (Player1Score == Player2Score) {
                 switch (Player1Score) {
                     case 1:
                         if (player1NumSorted.get(0) > player2NumSorted.get(0)) winner = "Player 1";
                         else if (player1NumSorted.get(0) < player2NumSorted.get(0)) winner = "Player 2";
-                        else if (player1NumSorted.get(0) == player2NumSorted.get(0)) winner = "Tie";
+                        else if (player1NumSorted.get(0) == player2NumSorted.get(0)) {
+                            winner = pairedTieBreaker(player1NumSorted, player2NumSorted);
+                        }
                         break;
                     case 2:
                     case 4:
@@ -325,10 +324,12 @@ public class PokerHandChecker {
                 break;
             }
             else if (player1NumSorted.get(0) == player2NumSorted.get(0)) {
-                winner = "Tie";
                 player1NumSorted.remove(0);
                 player2NumSorted.remove(0);
             }
+        }
+        if (winner == "") {
+            winner = "Tie";
         }
         return winner;
     }
