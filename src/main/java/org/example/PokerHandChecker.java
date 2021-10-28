@@ -204,15 +204,18 @@ public class PokerHandChecker {
     }
 
     private static boolean Straight(List<Integer> playerNumSorted) {
-        Collections.sort(playerNumSorted, Collections.<Integer>reverseOrder());
+//        Collections.sort(playerNumSorted, Collections.<Integer>reverseOrder());
 //        System.out.println(playerNum);
 //        ListIterator<Integer> iter = playerNum.listIterator(1);
         boolean result = true;
 
         while (result) {
             for (int i = 1; i < playerNumSorted.size(); i++) {
-                if (playerNumSorted.get(i - 1) - playerNumSorted.get(i) == 1) result = true;
-                else result = false;
+                if ((playerNumSorted.get(i - 1) - playerNumSorted.get(i)) == 1) result = true;
+                else {
+                    result = false;
+                    break;
+                }
             }
             break;
         }
