@@ -115,8 +115,8 @@ public class PokerHandChecker {
                         deleteRemaining(player1NumSorted, player1Pairs);
                         deleteRemaining(player2NumSorted, player2Pairs);
                         for (int i = 0; i < player1Pairs.size(); i++) {
-                            if (player1Pairs.get(0)[1] > player2Pairs.get(0)[1]) p1++;
-                            else if (player1Pairs.get(0)[1] < player2Pairs.get(0)[1]) p2++;
+                            if (player1Pairs.get(i)[1] > player2Pairs.get(i)[1]) p1++;
+                            else if (player1Pairs.get(i)[1] < player2Pairs.get(i)[1]) p2++;
                         }
                         if (p1 > p2) winner = "Player 1";
                         else if (p1 < p2) winner = "Player 2";
@@ -226,7 +226,7 @@ public class PokerHandChecker {
         if (playerNumSet.size() < 5) {
             for (Integer i : playerNumSet) {
                 int freq = Collections.frequency(playerNumSorted, i);
-                if (freq > 1) pairs.add(new Integer[]{Collections.frequency(playerNumSorted, i), i});
+                if (freq > 1) pairs.add(new Integer[]{freq, i});
             }
         }
         if (pairs.size() > 1) {
